@@ -100,14 +100,15 @@ Battery *get_battery(void) {
 
 #define GREEN		"\e[32m"
 #define YELLOW		"\e[33m"
-#define RED			"\e[31m"
+#define RED		"\e[31m"
 #define WHITE		"\e[0m"
+#define BAR_LEN		20
 void show_battery(Battery *bat, md_t mode) {
 	if (mode & ON_CHARGE) 		/* display whether it is charging */
 		printf("state: %s\n", 
 			bat->charge ? "charging" : "discharging");
 	if (mode & PERCENTAGE) {	/* display the percentage */
-		gint per = bat->percentage / 5;
+		gint per = bat->percentage * BAR_LEN / 100;
 		/* set color */
 		if (per <= 3) 
 			printf(RED);
@@ -115,8 +116,13 @@ void show_battery(Battery *bat, md_t mode) {
 			printf(YELLOW);
 		else 
 			printf(GREEN);
-		for (gint i = 0; i < per; i ++) 
-			putchar('#');
+		{
+			gint i;
+			for (i = 0; i < per; i ++) 
+				putchar('#');
+			for (; i < BAR_LEN; i ++) 
+				putchar(' ');
+		}
 		printf(WHITE"\t\t%3d%%\n", bat->percentage);
 	}
 	if (mode & REMAIN_TIME) {	/* show remaining time */
