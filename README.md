@@ -1,4 +1,4 @@
-# Battery
+# BatteryInfo
 ### by Yiming Liu(<joelliu@hust.edu.cn>)
 ______
 
@@ -16,11 +16,12 @@ are listed below.
 ## Build & Dependencies
 A Makefile file is to be added soon. So far, this programme can be compiled 
 manually using `gcc` or other C Compilers. Meanwhile, `pkg-config` is recommended 
-as it automatically search for libs needed. 
+as it automatically searches for libs needed. 
 To compile, lib `glib` and `upower-glib` are required. 
 At last, the command to compile this may look like: 
-> ``CC -c `pkg-config --cflags glib-2.0 upower-glib` main.c battery.c``  
-> ``CC main.o battery.o -o battery -lglib-2.0 -lupower-glib``
+
+> CC -c \`pkg-config --cflags glib-2.0 upower-glib\` main.c battery.c  
+> CC main.o battery.o -o battery -lglib-2.0 -lupower-glib
 
 ## Further Target
 I plan to add more features into `battery`. Features may include: 
