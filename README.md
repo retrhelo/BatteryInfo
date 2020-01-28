@@ -16,8 +16,8 @@ only written the skeleton of this programme, and  features are listed below.
 A Makefile is present, to build the target file and install programme 
 on your machine, run 
 
-> make
-> make install
+> make  
+> make install  
 
 **NOTICE** root permission is required to run `make install`. On the other 
 hand, you can change INSTALL_DIR in Makefile into a user-specific directory
