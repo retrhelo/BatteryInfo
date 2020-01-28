@@ -1,12 +1,30 @@
-battery: battery.o main.o
-	cc battery.o main.o -o battery -lglib-2.0 -lupower-glib
-install: battery
-	# root permission required!
-	mv battery /usr/local/bin
-clean: battery.o main.o battery
-	rm battery.o main.o battery
+TARGET=battery
+INSTALL_DIR=/usr/local/bin
 
-battery.o: battery.c
-	cc -c battery.c `pkg-config --cflags glib-2.0 upower-glib`
-main.o: main.c
-	cc -c main.c
+CC=gcc
+
+# source files
+SRC=main.c \
+	battery.c
+# object files
+OBJ=$(SRC:.c=.o)
+
+
+# C compiling arguments
+C_ARGS=`pkg-config --cflags glib-2.0 upower-glib`
+
+# C linking arguments
+C_LINK=-lglib-2.0 -lupower-glib
+
+build: $(OBJ)
+	$(CC) $(C_LINK) -o $(TARGET) $^
+
+# root permission required!
+install: $(TARGET)
+	mv $(TARGET) $(INSTALL_DIR)
+
+%.o: %.c
+	$(CC) $(C_ARGS) -c $<
+
+clean: 
+	rm $(OBJ) $(TARGET)
