@@ -1,5 +1,5 @@
 # BatteryInfo
-### by Yiming Liu(<798021909@qq.com>)
+Artyom Liu <artyomliu@foxmail.com>
 ______
 
 ## Introduction
